@@ -4,6 +4,7 @@
 #include "objects/guild.h"
 #include "objects/user.h"
 #include "types.h"
+
 typedef enum : int {
   GUILD_TEXT = 0,
   DM = 1,
@@ -25,13 +26,64 @@ enum overwrite_enum_t {
   overwrite_member
 };
 
-// TODO: bitwise permission fields are missing
-// https://discord.com/developers/docs/topics/permissions#permissions
+enum permissions : ul_t {
+  CREATE_INSTANT_INVITE = 1ul << 0,
+  KICK_MEMBERS = 1ul << 1,
+  BAN_MEMBERS = 1ul << 2,
+  ADMINISTRATOR = 1ul << 3,
+  MANAGE_CHANNELS = 1ul << 4,
+  MANAGE_GUILD = 1ul << 5,
+  ADD_REACTIONS = 1ul << 6,
+  VIEW_AUDIT_LOG = 1ul << 7,
+  PRIORITY_SPEAKER = 1ul << 8,
+  STREAM = 1ul << 9,
+  VIEW_CHANNEL = 1ul << 10,
+  SEND_MESSAGES = 1ul << 11,
+  SEND_TTS_MESSAGES = 1ul << 12,
+  MANAGE_MESSAGES = 1ul << 13,
+  EMBED_LINKS = 1ul << 14,
+  ATTACH_FILES = 1ul << 15,
+  READ_MESSAGE_HISTORY = 1ul << 16,
+  MENTION_EVERYONE = 1ul << 17,
+  USE_EXTERNAL_EMOJIS = 1ul << 18,
+  VIEW_GUILD_INSIGHTS = 1ul << 19,
+  CONNECT = 1ul << 20,
+  SPEAK = 1ul << 21,
+  MUTE_MEMBERS = 1ul << 22,
+  DEAFEN_MEMBERS = 1ul << 23,
+  MOVE_MEMBERS = 1ul << 24,
+  USE_VAD = 1ul << 25,
+  CHANGE_NICKNAME = 1ul << 26,
+  MANAGE_NICKNAMES = 1ul << 27,
+  MANAGE_ROLES = 1ul << 28,
+  MANAGE_WEBHOOKS = 1ul << 29,
+  MANAGE_GUILD_EXPRESSIONS = 1ul << 30,
+  USE_APPLICATION_COMMANDS = 1ul << 31,
+  REQUEST_TO_SPEAK = 1ul << 32,
+  MANAGE_EVENTS = 1ul << 33,
+  MANAGE_THREADS = 1ul << 34,
+  CREATE_PUBLIC_THREADS = 1ul << 35,
+  CREATE_PRIVATE_THREADS = 1ul << 36,
+  USE_EXTERNAL_STICKERS = 1ul << 37,
+  SEND_MESSAGES_IN_THREADS = 1ul << 38,
+  USE_EMBEDDED_ACTIVITIES = 1ul << 39,
+  MODERATE_MEMBERS = 1ul << 40,
+  VIEW_CREATOR_MONETIZATION_ANALYTICS = 1ul << 41,
+  USE_SOUNDBOARD = 1ul << 42,
+  CREATE_GUILD_EXPRESSIONS = 1ul << 43,
+  CREATE_EVENTS = 1ul << 44,
+  USE_EXTERNAL_SOUNDS = 1ul << 45,
+  SEND_VOICE_MESSAGES = 1ul << 46,
+  SEND_POLLS = 1ul << 49,
+  USE_EXTERNAL_APPS = 1ul << 50,
+  PIN_MESSAGES = 1ul << 51
+}
+
 struct overwrite_t {
   snowflake id;
   enum overwrite_enum_t type;
-  string allow;
-  string deny;
+  enum permissions allow;
+  enum permissions deny;
 };
 
 // thread_metadata
